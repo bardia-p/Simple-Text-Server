@@ -56,7 +56,8 @@ int main()
 		commandIndex = -1;
 
 		strcpy(send_data.some_text, buffer);
-
+	
+		//sends the command to the server
 		if (msgsnd(msgid1, (void *)&send_data, MAX_TEXT, 0) == -1) {
 			fprintf(stderr, "msgsnd failed\n");
 			exit(EXIT_FAILURE);
@@ -65,6 +66,7 @@ int main()
 
 		gettimeofday(&start, NULL);
 
+		//receives the response of the server
 		if (msgrcv(msgid2, (void *)&receive_data, BUFSIZ, msg_to_receive, 0) == -1) {
 			fprintf(stderr, "msgrcv failed with error: %d\n", errno);
 			exit(EXIT_FAILURE);
@@ -108,9 +110,11 @@ int main()
 
 		time =  (end.tv_sec-start.tv_sec)*1000000 + end.tv_usec - start.tv_usec;
 		
+		//adds the total time of the command
 		timeVals[commandIndex]+=time;
 		numCommands[commandIndex]++;
 		
+		//adds the total time of all the commands
 		timeVals[6]+=time;
 		numCommands[6]++;
 

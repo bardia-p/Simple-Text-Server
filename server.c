@@ -29,6 +29,7 @@ struct my_msg_st {
 /* finds the sentence from a given command */
 void findSentence(char* newCommand, char* sentence, int i){
 	int j = 0;
+	//removes the next line character
 	while (newCommand[i]!='\0'){
 		if (newCommand[i]!='\n'){
 			sentence[j] = newCommand[i];
@@ -42,6 +43,7 @@ void findSentence(char* newCommand, char* sentence, int i){
 /* finds the word from a given command */
 void findWord(char* newCommand, char* word, int i){
 	int j = 0;
+	//gets rid of the white space after the word
 	while (newCommand[i]!='\0' && newCommand[i]!='\n' && newCommand[i]!=' '){
 		word[j] = newCommand[i];
 		j++;
@@ -52,13 +54,22 @@ void findWord(char* newCommand, char* word, int i){
 
 
 /* adds the sentence to the text */
-void append (char* newSentence){
-	strcpy(text[(size++)%TEXT_SIZE], newSentence);
+int append (char* newSentence){
+	//adds the sentence to the end of the text
+	//if it goes over the limit it replaces it
+	if (strlen(newSentence)<=35){
+		strcpy(text[(size++)%TEXT_SIZE], newSentence);
+		return 1;
+	}
+	else{
+		return 0;		
+	}
 }
 
 /* displays all the sentences in the server */
 void displayText(char* response, int isClient){
 	if (size == 0){
+		//if the server is empty
 		strcpy(response, "Nothing to display\n");
 	}
 	else {
@@ -71,6 +82,7 @@ void displayText(char* response, int isClient){
 			text_length = 10;
 		}
 
+		//adds the period at the end of the sentence
 		for (int i=0; i<text_length; i++){
 			strcat(response, text[i]);
 			strcat(response, ".\n");
@@ -218,12 +230,15 @@ int main()
 		
 		//if the command is append
 		if (strncmp(receive_data.some_text, "append", 6) == 0) {
- 			strcpy(responseText,"You added the following sentence: ");
-			findSentence(receive_data.some_text,sentence, 7); //extracts the sentence from the command
-			strcat(responseText, sentence); 
-			strcat(responseText, "\n");
-			
-			append(sentence); //adds the sentence to the list of commands	
+ 			findSentence(receive_data.some_text,sentence, 7); //extracts the sentence from the command
+			if (append(sentence)){ //adds the sentence to the list of commands	
+				strcpy(responseText,"You added the following sentence: ");
+				strcat(responseText, sentence); 
+				strcat(responseText, "\n");
+			}
+			else{
+				strcpy(responseText,"Your sentence was too long\n");
+			}
 		}
 
 	
