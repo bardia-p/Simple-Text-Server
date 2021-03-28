@@ -27,6 +27,11 @@ $ ./CLIENT
 ```
 Note that client and server should be ran on two different terminals and in order to establish a valid connection the server program should run before the client program. 
 
+<p align="center">
+Here is an example of how to run the program
+<img src="images/example.JPG" />
+</p>
+
 ## USING THE PROGRAM
 After running the program you will be prompted by the program to enter a new command and the server will act accordingly:
 
