@@ -20,10 +20,10 @@ Released on: 27/03/2021
 ```shell
 $ make
 ```
-2. After that two executables with the name of SERVER and CLIENT has been generated which  can be run using:
+2. After that two executables with the name of "server" and "client" has been generated which  can be run using:
 ```shell
-$ ./SERVER
-$ ./CLIENT
+$ ./server
+$ ./client
 ```
 Note that client and server should be ran on two different terminals and in order to establish a valid connection the server program should run before the client program. 
 
