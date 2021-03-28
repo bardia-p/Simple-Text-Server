@@ -210,6 +210,7 @@ As you can see remove only works when the given sentence is identical to the one
 - Avoid using sentences that are more than 35 characters long.
 - Avoid white spaces before and after your sentences as this can cause potential problems with remove.
 - An optional command named "display" is included inside the program. This command can be accessed by uncommenting the code for it in the server.c file. The main purpose of this command is for debugging purposes.
+- Avoid using any form of punctuation in the sentences
 
 ## CREDITS
 Author: Bardia Parmoun
