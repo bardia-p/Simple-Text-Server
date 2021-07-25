@@ -1,6 +1,3 @@
-// Bardia Parmoun
-// 101143006
-
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
