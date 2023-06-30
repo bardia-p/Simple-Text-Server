@@ -11,3 +11,6 @@ client: client.o
 
 client.o: client.c
 	gcc	client.c -c
+
+cleanup:
+	rm	-f *.o server client
